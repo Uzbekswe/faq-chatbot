@@ -1,0 +1,22 @@
+services:
+  faq-chatbot:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_CHAT_MODEL: ${OPENAI_CHAT_MODEL:-gpt-5.6-luna}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
+      CHROMA_PATH: /app/.data/chroma
+      DATABASE_URL: sqlite:////app/.data/faq_chatbot.sqlite3
+      TOP_K: ${TOP_K:-4}
+      SIMILARITY_THRESHOLD: ${SIMILARITY_THRESHOLD:-0.35}
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-24}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - faq-data:/app/.data
+    restart: unless-stopped
+
+volumes:
+  faq-data:

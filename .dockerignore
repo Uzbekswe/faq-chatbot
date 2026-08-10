@@ -1,0 +1,16 @@
+.git
+.github
+.venv
+.env
+.data
+.pytest_cache
+.ruff_cache
+.coverage
+__pycache__
+data/raw
+data/*.jsonl
+dist
+build
+output
+tests
+plans.md

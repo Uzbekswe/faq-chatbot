@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="A grounded Korean SmartStore FAQ assistant." />
+    <title>SmartStore FAQ Assistant</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#composer">Skip to chat</a>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="SmartStore FAQ Assistant home">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span>
+            <strong>SmartStore FAQ</strong>
+            <small>Grounded support assistant</small>
+          </span>
+        </a>
+        <div class="topbar-actions">
+          <span class="status" id="service-status" data-state="checking">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="status-label">Checking service</span>
+          </span>
+          <button class="button button-secondary" id="new-chat" type="button">New chat</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="hero" aria-labelledby="page-title">
+          <p class="eyebrow">NAVER SMARTSTORE KNOWLEDGE</p>
+          <h1 id="page-title">Clear answers, grounded in the FAQ.</h1>
+          <p>Ask in Korean. Every response shows the SmartStore evidence used to answer.</p>
+        </section>
+
+        <section class="setup-panel" id="setup-panel" hidden aria-labelledby="setup-title">
+          <div class="setup-icon" aria-hidden="true">⌁</div>
+          <div>
+            <p class="eyebrow">CONFIGURATION NEEDED</p>
+            <h2 id="setup-title">Connect the server to OpenAI</h2>
+            <p>
+              Add <code>OPENAI_API_KEY</code> to the server-side <code>.env</code> file, build the
+              FAQ index, and restart the application. Keys are never accepted or stored by this page.
+            </p>
+            <p class="setup-missing" id="setup-missing"></p>
+          </div>
+        </section>
+
+        <section class="chat-panel" aria-label="Chat conversation">
+          <div class="messages" id="messages" aria-live="polite" aria-busy="false">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-symbol" aria-hidden="true">✦</div>
+              <h2>What would you like to know?</h2>
+              <p>Choose a common question or write your own in Korean.</p>
+              <div class="suggestions" aria-label="Suggested questions">
+                <button type="button" data-prompt="스마트스토어센터 가입 절차는 어떻게 되나요?">
+                  스마트스토어센터 가입 절차는 어떻게 되나요?
+                </button>
+                <button type="button" data-prompt="상품 등록은 어떻게 하나요?">
+                  상품 등록은 어떻게 하나요?
+                </button>
+                <button type="button" data-prompt="구매확정 후 정산은 언제 되나요?">
+                  구매확정 후 정산은 언제 되나요?
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <form class="composer" id="composer">
+            <label class="sr-only" for="message-input">Ask a SmartStore question in Korean</label>
+            <textarea
+              id="message-input"
+              name="message"
+              rows="1"
+              maxlength="2000"
+              placeholder="스마트스토어에 대해 질문해 주세요…"
+              autocomplete="off"
+              required
+            ></textarea>
+            <button class="send-button" id="send-button" type="submit" aria-label="Send message">
+              <span aria-hidden="true">↑</span>
+            </button>
+            <button class="stop-button" id="stop-button" type="button" hidden>Stop</button>
+            <p class="composer-note">Answers are generated from retrieved FAQ evidence. Verify important policy details.</p>
+          </form>
+        </section>
+      </main>
+    </div>
+    <template id="message-template">
+      <article class="message">
+        <div class="message-label"></div>
+        <div class="message-body"></div>
+        <details class="sources" hidden>
+          <summary>Sources used <span class="source-count"></span></summary>
+          <ol class="source-list"></ol>
+        </details>
+      </article>
+    </template>
+  </body>
+</html>

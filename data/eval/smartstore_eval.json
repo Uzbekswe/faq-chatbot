@@ -1,0 +1,44 @@
+[
+  {
+    "id": "signup-exact",
+    "kind": "retrieval",
+    "query": "스마트스토어센터 가입 절차는 어떻게 되나요?",
+    "expected_question_contains": "가입"
+  },
+  {
+    "id": "product-register",
+    "kind": "retrieval",
+    "query": "상품을 처음 등록하려면 무엇을 해야 하나요?",
+    "expected_question_contains": "상품 등록"
+  },
+  {
+    "id": "settlement-time",
+    "kind": "retrieval",
+    "query": "구매확정이 끝난 주문은 언제 정산되나요?",
+    "expected_question_contains": "정산"
+  },
+  {
+    "id": "shipping-policy",
+    "kind": "retrieval",
+    "query": "배송 지연이 생기면 판매자는 어떻게 처리해야 하나요?",
+    "expected_question_contains": "배송"
+  },
+  {
+    "id": "return-request",
+    "kind": "retrieval",
+    "query": "구매자가 반품을 요청했을 때 처리 방법을 알려주세요.",
+    "expected_question_contains": "반품"
+  },
+  {
+    "id": "weather-oos",
+    "kind": "out_of_scope",
+    "query": "오늘 서울 날씨는 어때요?",
+    "expected_no_match": true
+  },
+  {
+    "id": "recipe-oos",
+    "kind": "out_of_scope",
+    "query": "김치찌개 요리법을 알려주세요.",
+    "expected_no_match": true
+  }
+]
